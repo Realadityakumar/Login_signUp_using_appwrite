@@ -7,11 +7,13 @@ import Home from './pages/Home'
 import Profile from './pages/Profile'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import { AuthProvider } from './utils/AuthContext';
 
 function App() {
 
   return (
     <Router>
+      <AuthProvider>
         <Header/>
         <Routes>
           <Route path="/login" element={<Login/>}/>
@@ -21,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}/>
           </Route>
         </Routes>
+        </AuthProvider>
     </Router>
   )
 }

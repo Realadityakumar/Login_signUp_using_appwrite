@@ -1,11 +1,38 @@
-import React from 'react'
+import React,{useRef, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../utils/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
+    const navigate = useNavigate();
+  
+  const registerForm = useRef(null) 
+   useEffect(()=>{
+      if(user){
+        navigate('/')
+      }
+    },[])
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const name = registerForm.current.name.value
+    const email = registerForm.current.email.value
+
+    const password1 = registerForm.current.password1.value
+    const password2 = registerForm.current.password2.value
+     if(password1 !== password2){
+      alert("password didn't match")
+      return
+     }
+
+     const userInfo = {name,email,password1,password2}
+
+     registerUser(userInfo)
+  }
+  const {user, registerUser} = useAuth()
   return (
     <div className="container">
       <div className="login-register-container">
-        <form>
+        <form  ref={registerForm} onSubmit={handleSubmit}>
 
           <div className="form-field-wrapper">
                 <label>Name:</label>
