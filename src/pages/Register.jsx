@@ -20,7 +20,7 @@ const Register = () => {
     const password1 = registerForm.current.password1.value
     const password2 = registerForm.current.password2.value
      if(password1 !== password2){
-      alert("password didn't match")
+      alert("both password should be changed")
       return
      }
 
